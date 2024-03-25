@@ -142,3 +142,36 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+
+//Desctructuring
+const book = getBook(1);
+book
+
+// const title = book.title;
+// const author = book.author;
+
+const {title, author, pages, publicationDate, genres, hasMovieAdaptation} = book;
+
+console.log(author, title, genres)
+
+// const primaryGenre = genres[0]
+// const secondaryGenre = genres[1]
+
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+
+
+console.log(primaryGenre, secondaryGenre, otherGenres)
+
+const newGenres = [...genres, 'epic fantasy']
+newGenres;
+
+const updatedBook = {...book, moviePublicationDate: '2001-12-19', pages: 1210}
+updatedBook;
+
+const summary = `${title}, a ${pages}-pages long book, was written by ${author} and publishing in ${publicationDate.split('-')[0]}`;
+summary;
+
+const pagesRange = pages > 1000 ? 'over a thousand' : 'less than one thou'
+pagesRange
+
