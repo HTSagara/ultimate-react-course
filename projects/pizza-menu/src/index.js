@@ -47,7 +47,8 @@ const pizzaData = [
   },
 ];
 
-function App() {
+function App()
+{
   return (
     <div className="container">
       <Header />
@@ -57,7 +58,52 @@ function App() {
   );
 }
 
-function Menu() {
+
+
+function Header()
+{
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+
+function Footer()
+{
+  const hour = new Date().getHours();
+  const openHour = 11;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+
+  return (
+    <footer className="footer">
+      {isOpen ? (
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        <p>
+          We're glad to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
+      )}
+    </footer>
+  );
+}
+
+function Order({ closeHour, openHour })
+{
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 until {closeHour}:00. Come visit us or
+        order online
+      </p>
+      <button className="btn">Order</button>
+    </div>
+  );
+}
+
+function Menu()
+{
   const pizzas = pizzaData;
   const numPizzas = pizzas.length;
 
@@ -83,46 +129,8 @@ function Menu() {
   );
 }
 
-function Header() {
-  return (
-    <header className="header">
-      <h1>Fast React Pizza Co.</h1>
-    </header>
-  );
-}
-
-function Footer() {
-  const hour = new Date().getHours();
-  const openHour = 11;
-  const closeHour = 22;
-  const isOpen = hour >= openHour && hour <= closeHour;
-
-  return (
-    <footer className="footer">
-      {isOpen ? (
-        <Order closeHour={closeHour} openHour={openHour} />
-      ) : (
-        <p>
-          We're glad to welcome you between {openHour}:00 and {closeHour}:00.
-        </p>
-      )}
-    </footer>
-  );
-}
-
-function Order({ closeHour, openHour }) {
-  return (
-    <div className="order">
-      <p>
-        We're open from {openHour}:00 until {closeHour}:00. Come visit us or
-        order online
-      </p>
-      <button className="btn">Order</button>
-    </div>
-  );
-}
-
-function Pizza({ pizzaObj }) {
+function Pizza({ pizzaObj })
+{
   return (
     <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name}></img>
